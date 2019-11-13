@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -20,12 +22,14 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ForecastFragment extends Fragment {
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = new View(getContext());
-        v.setBackgroundColor(0xFF800080);
-        return v;
+        //View v = new View(getContext());
+        //v.setBackgroundColor(0xFF800080);
+        //return v;
+        return inflater.inflate(R.layout.fragment_forecast, container, false);
+
     }
 }
