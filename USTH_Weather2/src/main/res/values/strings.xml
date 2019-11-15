@@ -2,6 +2,12 @@
     <string name="app_name">USTH_Weather</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="Thursday">Thursday</string>
+    <string name="Thursday">Thursday\n Torendo</string>
     <string name="imageView">Icon</string>
+    <string name="Friday">Friday\n Sun</string>
+    <string name="Saturday">Staturday\n Storm</string>
+    <string name="SunDay">Sunday\n Cloud</string>
+    <string name="Wednesday">Wednesday\n rain</string>
+    <string name="Tuesday">Tuesday \n Snow</string>
+    <string name="Monday">Monday \n Hot</string>
 </resources>
