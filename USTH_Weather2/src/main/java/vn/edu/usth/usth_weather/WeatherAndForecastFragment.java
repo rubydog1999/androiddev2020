@@ -25,25 +25,8 @@ public class WeatherAndForecastFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-
-        WeatherFragment weatherFragment = new WeatherFragment();
-        weatherFragment.setArguments(this.getArguments());
-
-        ForecastFragment forecastFragment = new ForecastFragment();
-        forecastFragment.setArguments(this.getArguments());
-
-
-        fragmentTransaction.replace(R.id.weather_fragment, weatherFragment).replace(R.id.forecast_fragment, forecastFragment);
-
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-
-        fragmentTransaction.commit();
-
-        LinearLayout fragment_weather = (LinearLayout) inflater.inflate(R.layout.fragment_weather_and_forecast, container, false);
-
-        return fragment_weather;
+        return inflater.inflate(R.layout.fragment_weather_and_forecast, container, false);
     }
+    
 
 }
