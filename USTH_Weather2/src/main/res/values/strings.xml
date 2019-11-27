@@ -2,16 +2,22 @@
     <string name="app_name">USTH_Weather</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="Thursday">Thursday\n Torendo</string>
+    <string name="Thursday">Thursday\n 23/11/2019</string>
     <string name="imageView">Icon</string>
-    <string name="Friday">Friday\n Sun</string>
-    <string name="Saturday">Staturday\n Storm</string>
-    <string name="SunDay">Sunday\n Cloud</string>
-    <string name="Wednesday">Wednesday\n rain</string>
-    <string name="Tuesday">Tuesday \n Snow</string>
-    <string name="Monday">Monday \n Hot</string>
+    <string name="Friday">Friday\n 24/11/2019</string>
+    <string name="Saturday">Staturday\n 25/11/2019</string>
+    <string name="SunDay">Sunday\n 26/11/2019</string>
+    <string name="Wednesday">Wednesday\n 22/11/2019</string>
+    <string name="Tuesday">Tuesday \n 21/11/2019</string>
+    <string name="Monday">Monday \n 20/11/2019</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="HaNoi">HaNoi</string>
+    <string name="Sun">Sun</string>
+    <string name="Hot">Hot</string>
+    <string name="Cold">Cold</string>
+    <string name="Rain">Rain</string>
+    <string name="Thunder">Thunder</string>
+    <string name="Cloud">Cloud</string>
+    <string name="Windy">Windy</string>
 </resources>

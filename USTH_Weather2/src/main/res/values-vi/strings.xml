@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">USTH_Weather</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Thursday">Thứ Năm\n 23/11/2019</string>
+    <string name="imageView">Icon</string>
+    <string name="Friday">Thứ Sáu\n 24/11/2019</string>
+    <string name="Saturday">Thứ Bảy\n 25/11/2019</string>
+    <string name="SunDay">Chủ Nhật\n 26/11/2019</string>
+    <string name="Wednesday">Thứ Tư\n 22/11/2019</string>
+    <string name="Tuesday">Thứ Ba \n 21/11/2019</string>
+    <string name="Monday">Thứ Hai \n 20/11/2019</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Sun">Nắng</string>
+    <string name="Hot">Nóng</string>
+    <string name="Cold">Lạnh</string>
+    <string name="Rain">Mưa</string>
+
+    <string name="Thunder">Sấm Sét</string>
+    <string name="Cloud">Mây</string>
+    <string name="Windy">Gió</string>
+</resources>

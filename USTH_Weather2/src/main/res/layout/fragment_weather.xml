@@ -18,7 +18,7 @@
         android:background="#33E3FF">
 
         <TextView
-            android:layout_width="113dp"
+            android:layout_width="119dp"
             android:layout_height="match_parent"
             android:paddingLeft="0dp"
             android:paddingTop="0dp"
@@ -26,17 +26,19 @@
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_width="169dp"
+            android:layout_height="187dp"
             android:contentDescription="@string/Monday"
             android:src="@drawable/thermometer"
             tools:visibility="visible"></ImageView>
+
         <TextView
-            android:layout_width="113dp"
+            android:layout_width="114dp"
             android:layout_height="match_parent"
-            android:paddingRight="0dp"
+            android:layout_marginRight="0dp"
             android:paddingTop="0dp"
-            android:text="@string/HaNoi" />
+            android:paddingRight="0dp"
+            android:text="@string/Hot" />
     </LinearLayout>
 
 

@@ -7,7 +7,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import android.widget.TextView;
@@ -15,6 +20,8 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 
 import org.w3c.dom.Text;
+
+import java.util.Locale;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -32,7 +39,21 @@ public class WeatherActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
 
 
+
     }
+    /*private void setAppLocale(String localeCode){
+        Locale myLocale = new Locale(localeCode);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+
+        Intent refresh = new Intent();
+        finish();
+
+        startActivity(refresh);
+    }*/
 
     @Override
     protected void onStart() {

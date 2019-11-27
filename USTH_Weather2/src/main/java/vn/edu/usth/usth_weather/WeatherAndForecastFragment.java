@@ -27,6 +27,6 @@ public class WeatherAndForecastFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_weather_and_forecast, container, false);
     }
-    
+
 
 }
