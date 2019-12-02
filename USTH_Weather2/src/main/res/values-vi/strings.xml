@@ -18,7 +18,7 @@
     <string name="Cold">Lạnh</string>
     <string name="Rain">Mưa</string>
 
-    <string name="Thunder">Sấm Sét</string>
+    <string name="Thunder">Sấm</string>
     <string name="Cloud">Mây</string>
     <string name="Windy">Gió</string>
 </resources>
