@@ -10,8 +10,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -21,9 +23,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.w3c.dom.Text;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 
 public class WeatherActivity extends AppCompatActivity {
+    MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,40 @@ public class WeatherActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
+
+        // Copy music file to sdcard0
+        copyFileToExternalStorage(R.raw.nhac, "nhac.mp3");
+
+        // Play music in the app
+        music = MediaPlayer.create(WeatherActivity.this, R.raw.nhac);
+        music.start();
+        music.setLooping(true);
+
+    }
+
+    private void copyFileToExternalStorage(int resourceId, String resourceName){
+        String pathSDCard = Environment.getExternalStorageDirectory()
+                + "/Android/data/vn.edu.usth.weather/" + resourceName;
+        try{
+            InputStream in = getResources().openRawResource(resourceId);
+            FileOutputStream out = null;
+            out = new FileOutputStream(pathSDCard);
+            byte[] buff = new byte[1024];
+            int read = 0;
+            try {
+                while ((read = in.read(buff)) > 0) {
+                    out.write(buff, 0, read);
+                }
+            } finally {
+                in.close();
+                out.close();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 
 
@@ -66,18 +107,21 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.i ("onStart", "weather activity is stopping");
+        music.pause();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i ("onDestroy", "weather activity is destroyed");
+        music.stop();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.i ("onResume", "weather activity is resuming");
+        music.start();
     }
 
 
@@ -85,6 +129,7 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.i( "onPause", "weather activity is pausing");
+        music.pause();
     }
     public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
         private final int PAGE_COUNT = 3;
