@@ -31,6 +31,14 @@ import java.io.InputStream;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
+    final Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            // This method is executed in main thread
+            String content = msg.getData().getString("server_response");
+            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+        }
+    };
 
 
     @Override
@@ -55,7 +63,7 @@ public class WeatherActivity extends AppCompatActivity {
         music.setLooping(true);
     }
 
-    // particle_work_13
+    /* particle_work_13
     final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
@@ -87,12 +95,12 @@ public class WeatherActivity extends AppCompatActivity {
 
         t.start();
 
-}
+}*/
 
 
 
 
-        /* labwork 14:
+        // labwork 14:
         private class AsyncTaskRunner extends AsyncTask<String, String, String> {
             private String resp;
             ProgressDialog progressDialog;
@@ -136,7 +144,7 @@ public class WeatherActivity extends AppCompatActivity {
                 // Do something here
             }
         }
-*/
+
 
 
 
