@@ -20,4 +20,7 @@
     <string name="Thunder">Thunder</string>
     <string name="Cloud">Cloud</string>
     <string name="Windy">Windy</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="action_reload">reload</string>
+    <string name="DarlMode">DarkMode</string>
 </resources>

@@ -8,26 +8,21 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.DisplayMetrics;
 import android.util.Log;
 
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
-
-import org.w3c.dom.Text;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Locale;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
@@ -82,6 +77,31 @@ public class WeatherActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                music.seekTo(0);
+                Toast.makeText(getApplicationContext(),"refresh successfully!",Toast.LENGTH_LONG).show();
+                music.start();
+// do something when search is pressed here
+                return true;
+            case R.id.item_1:
+                Intent intent = new Intent(WeatherActivity.this, PreActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return  super.onOptionsItemSelected(item);
+    }
+
+
     /*private void setAppLocale(String localeCode){
         Locale myLocale = new Locale(localeCode);
         Resources res = getResources();
@@ -114,7 +134,8 @@ public class WeatherActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i ("onDestroy", "weather activity is destroyed");
-        music.stop();
+        music.release();
+        music = null;
     }
 
     @Override
@@ -131,6 +152,9 @@ public class WeatherActivity extends AppCompatActivity {
         Log.i( "onPause", "weather activity is pausing");
         music.pause();
     }
+
+
+    // praticle 7
     public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
         private final int PAGE_COUNT = 3;
         private String titles[] = new String[] { "Hanoi", "Paris", "Toulouse" };

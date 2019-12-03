@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/reload"
+        android:title="@string/action_reload"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/item_1"
+        android:title="@string/DarlMode"
+        app:showAsAction="never" />
+</menu>

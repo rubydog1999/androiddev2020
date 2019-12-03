@@ -21,4 +21,7 @@
     <string name="Thunder">Sấm</string>
     <string name="Cloud">Mây</string>
     <string name="Windy">Gió</string>
+    <string name="action_favorite">Thích</string>
+    <string name="action_reload">Tải lại</string>
+    <string name="DarlMode">Chế Độ Tối</string>
 </resources>
