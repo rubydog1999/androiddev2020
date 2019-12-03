@@ -7,10 +7,15 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 import android.view.Menu;
@@ -26,6 +31,7 @@ import java.io.InputStream;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +53,93 @@ public class WeatherActivity extends AppCompatActivity {
         music = MediaPlayer.create(WeatherActivity.this, R.raw.nhac);
         music.start();
         music.setLooping(true);
-
     }
+
+    // particle_work_13
+    final Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            // This method is executed in main thread
+            String content = msg.getData().getString("server_response");
+            Toast.makeText(getApplicationContext(), content, Toast.LENGTH_LONG).show();
+        }
+    };
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            // this method is run in a worker thread
+            try {
+                // wait for 5 seconds to simulate a long network access
+                Thread.sleep(5000);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // Assume that we got our data from server
+            Bundle bundle = new Bundle();
+            bundle.putString("server_response", "some sample json here");
+            // notify main thread
+            Message msg = new Message();
+            msg.setData(bundle);
+            handler.sendMessage(msg);
+        }
+    });
+
+        t.start();
+
+}
+
+
+
+
+        /* labwork 14:
+        private class AsyncTaskRunner extends AsyncTask<String, String, String> {
+            private String resp;
+            ProgressDialog progressDialog;
+
+            @Override
+            protected String doInBackground(String...params) {
+                try {
+                    Thread.sleep(5000);
+                    resp = "Sleep for 5 seconds";
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    resp = e.getMessage();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    resp = e.getMessage();
+                }
+                return resp;
+            }
+            @Override
+            protected void onPostExecute(String result) {
+                // execution of result of Long time consuming operation
+                progressDialog.dismiss();
+                // Assume that we got our data from server
+                Bundle bundle = new Bundle();
+                bundle.putString("server_response","some sample json hereeeeeee");
+
+                // notify main thread
+                Message msg = new Message();
+                msg.setData(bundle);
+                handler.sendMessage(msg);
+            }
+            @Override
+            protected void onPreExecute() {
+                progressDialog = ProgressDialog.show(WeatherActivity.this,
+                        "Updating weather...",
+                        "Wait for 5 seconds!");
+            }
+
+            @Override
+            protected void onProgressUpdate(String... text) {
+                // Do something here
+            }
+        }
+*/
+
+
+
 
     private void copyFileToExternalStorage(int resourceId, String resourceName){
         String pathSDCard = Environment.getExternalStorageDirectory()
@@ -77,7 +168,7 @@ public class WeatherActivity extends AppCompatActivity {
 
 
     }
-
+    // praticle_work_12_menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -88,8 +179,10 @@ public class WeatherActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                music.seekTo(0);
-                Toast.makeText(getApplicationContext(),"refresh successfully!",Toast.LENGTH_LONG).show();
+                //AsyncTaskRunner runner = new AsyncTaskRunner();
+                //runner.execute("5000");
+                music.seekTo(5);
+
                 music.start();
 // do something when search is pressed here
                 return true;
@@ -100,6 +193,8 @@ public class WeatherActivity extends AppCompatActivity {
         }
         return  super.onOptionsItemSelected(item);
     }
+
+
 
 
     /*private void setAppLocale(String localeCode){
