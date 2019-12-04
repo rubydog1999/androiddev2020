@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -28,6 +31,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WeatherActivity extends AppCompatActivity {
     MediaPlayer music;
@@ -61,6 +67,45 @@ public class WeatherActivity extends AppCompatActivity {
         music = MediaPlayer.create(WeatherActivity.this, R.raw.nhac);
         music.start();
         music.setLooping(true);
+        // labwork 15: fetch image from server
+        new GetRequestImage().execute("https://ictlab.usth.edu.vn/wp-content/uploads/logos/usth.png");
+    }
+    private class GetRequestImage extends AsyncTask<String, Void, Bitmap> {
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(WeatherActivity.this,
+                    "Updating weather...",
+                    "Wait for 5 seconds!");
+        }
+        @Override
+
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                InputStream inputStream = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(inputStream);
+                return myBitmap;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+        }
+            return null;
+    }
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+    }
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            progressDialog.dismiss();
+            ImageView imageView = (ImageView) findViewById(R.id.logo);
+            imageView.setImageBitmap(bitmap);
+        }
     }
 
     /* particle_work_13
@@ -108,14 +153,16 @@ public class WeatherActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String...params) {
                 try {
-                    Thread.sleep(5000);
-                    resp = "Sleep for 5 seconds";
-                } catch (InterruptedException e) {
+
+
+                     Thread.sleep(5000);
+                    resp = "Sleep for 5 seconds";}
+                     catch (InterruptedException e) {
                     e.printStackTrace();
                     resp = e.getMessage();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    resp = e.getMessage();
+                     resp = e.getMessage();
                 }
                 return resp;
             }
@@ -144,6 +191,7 @@ public class WeatherActivity extends AppCompatActivity {
                 // Do something here
             }
         }
+
 
 
 
@@ -187,8 +235,8 @@ public class WeatherActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                //AsyncTaskRunner runner = new AsyncTaskRunner();
-                //runner.execute("5000");
+                AsyncTaskRunner runner = new AsyncTaskRunner();
+                runner.execute("5000");
                 music.seekTo(5);
 
                 music.start();

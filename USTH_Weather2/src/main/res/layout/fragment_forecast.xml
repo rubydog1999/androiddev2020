@@ -7,7 +7,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ForecastFragment"
-    android:id="@+id/forecast_fragment">
+    android:id="@+id/forecast_fragment"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -215,6 +216,16 @@
             android:paddingLeft="0dp"
             android:paddingTop="30dp"
             android:text="@string/Cloud" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo"
+            ></ImageView>
     </LinearLayout>
 
 
